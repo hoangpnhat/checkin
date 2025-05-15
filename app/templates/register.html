@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration - Competition Check-in</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Candidate Registration</h1>
+        
+        {% if error %}
+        <div class="alert alert-error">{{ error }}</div>
+        {% endif %}
+        
+        {% if info %}
+        <div class="alert alert-info">{{ info }}</div>
+        {% endif %}
+        
+        {% if success %}
+        <div class="alert alert-success">{{ success }}</div>
+        {% endif %}
+        
+        <div class="camera-container">
+            {% if not prefilled_image %}
+                <div class="camera-selection">
+                    <label for="camera-select">Camera: </label>
+                    <select id="camera-select" class="camera-dropdown">
+                        <option value="">Loading cameras...</option>
+                    </select>
+                </div>
+            <video id="video" width="640" height="480" autoplay></video>
+            <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+            <div class="camera-buttons">
+                <button id="capture-btn" class="btn">Capture Photo</button>
+            </div>
+            {% endif %}
+            
+            <div id="photo-preview" {% if prefilled_image %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+                <img id="captured-image" src="{% if prefilled_image %}{{ prefilled_image }}{% endif %}" alt="Captured image">
+                {% if not prefilled_image %}
+                <button id="retake-btn" class="btn">Retake</button>
+                {% endif %}
+            </div>
+        </div>
+        
+        <form id="register-form" method="post" action="/register" {% if prefilled_image %}style="display: block;"{% else %}style="display: none;"{% endif %}>
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <input type="hidden" id="image-data" name="image_data" {% if prefilled_image %}value="{{ prefilled_image }}"{% endif %}>
+            <button type="submit" class="btn">Register</button>
+        </form>
+        
+        <div class="navigation">
+            <a href="/" class="btn btn-secondary">Back to Home</a>
+        </div>
+    </div>
+    
+    <script src="/static/js/camera.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Use a server-rendered variable to check if prefilled_image exists
+            var hasPrefilled = "{% if prefilled_image %}true{% else %}false{% endif %}";
+            hasPrefilled = (hasPrefilled === "true");
+            
+            if (!hasPrefilled) {
+                // Initialize camera only if we don't have a prefilled image
+                initCamera();
+                
+                // Capture button
+                document.getElementById('capture-btn').addEventListener('click', function() {
+                    captureImage();
+                    document.getElementById('video').style.display = 'none';
+                    document.getElementById('capture-btn').style.display = 'none';
+                    document.getElementById('photo-preview').style.display = 'block';
+                    document.getElementById('register-form').style.display = 'block';
+                });
+                
+                // Retake button
+                document.getElementById('retake-btn').addEventListener('click', function() {
+                    document.getElementById('video').style.display = 'block';
+                    document.getElementById('capture-btn').style.display = 'inline-block';
+                    document.getElementById('photo-preview').style.display = 'none';
+                    document.getElementById('register-form').style.display = 'none';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

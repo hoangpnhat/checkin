@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+python-multipart
+# face-recognition
+deepface
+tensorflow
+tf-keras
+opencv-python
+cmake
+jinja2
+sqlalchemy
+gspread
+google-auth
+python-dotenv
+pillow

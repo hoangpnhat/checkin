@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Check-in - Competition Check-in</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Confirm Check-in</h1>
+        
+        <div class="confirmation-details">
+            <div class="photo-container">
+                <img src="data:image/jpeg;base64,{{ data.image }}" alt="Candidate photo">
+            </div>
+            
+            <div class="details">
+                <h2>{{ data.name }}</h2>
+                <p>Check-in time: {{ data.time }}</p>
+            </div>
+        </div>
+        
+        <form action="/confirm" method="post">
+            <input type="hidden" name="name" value="{{ data.name }}">
+            <input type="hidden" name="time" value="{{ data.time }}">
+            
+            <div class="form-group">
+                <label for="score">Score (if applicable):</label>
+                <input type="number" id="score" name="score" step="0.01" value="0.0">
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Confirm Check-in</button>
+            <a href="/checkin" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
