@@ -21,27 +21,20 @@ def init_sheets():
     
     try:
         # Create a credentials file from environment variable if it doesn't exist
-        creds_json = os.getenv("GOOGLE_CREDENTIALS_JSON")
-        if creds_json:
-            # Write the JSON to a temporary file
-            with open("credentials.json", "w") as f:
-                f.write(creds_json)
-            
-            # Use the file for authentication
-            creds = Credentials.from_service_account_file(
-                "credentials.json", scopes=SCOPES
-            )
-            client = gspread.authorize(creds)
-            
-            # Open the Google Sheet
-            sheet_id = os.getenv("GOOGLE_SHEET_ID")
-            sheet = client.open_by_key(sheet_id).sheet1
-            print(sheet)
-            print("Google Sheets connection established")
-        else:
-            print("No Google credentials found in environment variables")
+        # Use the file for authentication
+        creds = Credentials.from_service_account_file(
+            "credentials.json", scopes=SCOPES
+        )
+        client = gspread.authorize(creds)
+        
+        # Open the Google Sheet
+        sheet_id = os.getenv("GOOGLE_SHEET_ID")
+        sheet = client.open_by_key(sheet_id).sheet1
+        print(sheet)
+        print("Google Sheets connection established")
     except Exception as e:
         print(f"Error initializing Google Sheets: {str(e)}")
+    return sheet
 
 def add_checkin_record(name: str, time: str, score: float = 0.0):
     """Add a new check-in record to Google Sheets"""

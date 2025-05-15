@@ -21,3 +21,64 @@ INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
 INFO:     Finished server process [2750467]
 INFO:     Stopping reloader process [2750462]
+INFO:     Will watch for changes in these directories: ['/home/dungspringai/hoangpn/checkin']
+INFO:     Uvicorn running on http://0.0.0.0:5016 (Press CTRL+C to quit)
+INFO:     Started reloader process [2761875] using StatReload
+2025-05-15 09:35:51.018367: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2025-05-15 09:35:51.022761: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2025-05-15 09:35:51.035763: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1747276551.057150 2761877 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1747276551.063596 2761877 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1747276551.080709 2761877 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747276551.080736 2761877 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747276551.080758 2761877 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747276551.080774 2761877 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-15 09:35:51.086163: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+INFO:     Started server process [2761877]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initializing Google Sheets...
+Error initializing Google Sheets: Expecting ':' delimiter: line 1 column 8 (char 7)
+Loaded 4 face encodings
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+2025-05-15 09:51:44.897017: E external/local_xla/xla/stream_executor/cuda/cuda_platform.cc:51] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2025-05-15 09:51:44.897080: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:167] env: CUDA_VISIBLE_DEVICES="-1"
+2025-05-15 09:51:44.897094: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:170] CUDA_VISIBLE_DEVICES is set to -1 - this hides all GPUs from CUDA
+2025-05-15 09:51:44.897104: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:178] verbose logging is disabled. Rerun with verbose logging (usually --v=1 or --vmodule=cuda_diagnostics=1) to get more diagnostic output from this module
+2025-05-15 09:51:44.897114: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:183] retrieving CUDA diagnostic information for host: springaiPC
+2025-05-15 09:51:44.897121: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:190] hostname: springaiPC
+2025-05-15 09:51:44.897223: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:197] libcuda reported version is: 545.29.6
+2025-05-15 09:51:44.897263: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:201] kernel reported version is: 545.29.6
+2025-05-15 09:51:44.897271: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:291] kernel version seems to match DSO: 545.29.6
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /confirm HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
