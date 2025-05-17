@@ -5,42 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Check-in - Competition Check-in</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <div class="container">
         <h1>Candidate Check-in</h1>
-        
+
         {% if error %}
         <div class="alert alert-error">{{ error }}</div>
         {% endif %}
-        
+
         <div class="camera-container">
             <div class="camera-selection">
-                <label for="camera-select">Camera: </label>
-                <select id="camera-select" class="camera-dropdown">
-                    <option value="">Loading cameras...</option>
-                </select>
+            <label for="camera-select">Camera: </label>
+            <select id="camera-select" class="camera-dropdown">
+                <option value="">Loading cameras...</option>
+            </select>
             </div>
+
             <video id="video" width="640" height="480" autoplay></video>
             <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+
             <div class="camera-buttons">
-                <button id="capture-btn" class="btn">Capture Photo</button>
+            <button id="capture-btn" class="btn">Capture Photo</button>
             </div>
+
             <div id="photo-preview" style="display: none;">
-                <img id="captured-image" src="" alt="Captured image">
-                <button id="retake-btn" class="btn">Retake</button>
-            </div>
+            <img id="captured-image" src="" alt="Captured image" />
+
+            <form id="checkin-form" action="/checkin" method="post" class="form-buttons">
+                <input type="hidden" id="image-data" name="image_data" />
+                <div class="buttons">
+                <button type="button" id="retake-btn" class="btn btn-info">Retake</button>
+                <button type="submit" class="btn btn-primary">Check-in</button>
+                </div>
+            </form>
         </div>
-        
-        <form id="checkin-form" action="/checkin" method="post" style="display: none;">
-            <input type="hidden" id="image-data" name="image_data">
-            <button type="submit" class="btn">Check-in</button>
-        </form>
-        
-        <div class="navigation">
-            <a href="/" class="btn btn-secondary">Back to Home</a>
-        </div>
-    </div>
+  </div>
+
+  <div class="navigation">
+    <a href="/" class="btn btn-secondary"><i class="fas fa-home"></i> Back to Home</a>
+  </div>
+</div>
+
     
     <script src="/static/js/camera.js"></script>
     <script>
@@ -58,7 +65,7 @@
             
             // Retake button
             document.getElementById('retake-btn').addEventListener('click', () => {
-                document.getElementById('video').style.display = 'block';
+                document.getElementById('video').style.display = 'inline-block';
                 document.getElementById('capture-btn').style.display = 'inline-block';
                 document.getElementById('photo-preview').style.display = 'none';
                 document.getElementById('checkin-form').style.display = 'none';
