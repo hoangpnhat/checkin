@@ -9,10 +9,14 @@ import cv2
 from sqlalchemy.orm import Session
 import base64
 
-from . import database, face_utils, google_sheets
+from . import database, face_utils, google_sheets, save_image
 
+# Add near the top of your file, before importing TensorFlow/face_utils
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'  # Suppress TensorFlow logging
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'  # Force CPU-only mode
 # Create directories if they don't exist
 os.makedirs("face_database", exist_ok=True)
+os.makedirs("app/static/uploads", exist_ok=True)
 
 app = FastAPI(title="Competition Check-in System")
 
@@ -94,8 +98,8 @@ async def checkin(
 ):
     try:
         # Process the base64 image
-        image_data = image_data.split(',')[1]
-        image_bytes = base64.b64decode(image_data)
+        image_data_clean = image_data.split(',')[1] if ',' in image_data else image_data
+        image_bytes = base64.b64decode(image_data_clean)
         image = cv2.imdecode(np.frombuffer(image_bytes, np.uint8), cv2.IMREAD_COLOR)
         
         # Detect face
@@ -130,12 +134,16 @@ async def checkin(
                 {"request": request, "error": f"{name} has already checked in today."}
             )
             
+        # Save the image and get the URL
+        image_url = save_image.save_image_from_data_url(image_data_clean, name)
+            
         # Record check-in time and prepare data for confirmation
         check_in_time = datetime.now()
         check_in_data = {
             "name": name,
             "time": check_in_time.strftime("%Y-%m-%d %H:%M:%S"),
-            "image": image_data  # Pass the image for display/confirmation
+            "image": image_data,  # Keep the original data URL for display
+            "image_url": image_url  # The saved URL path
         }
         
         return templates.TemplateResponse(
@@ -144,6 +152,7 @@ async def checkin(
         )
         
     except Exception as e:
+        print(f"Error in checkin: {str(e)}")
         return templates.TemplateResponse(
             "checkin.html", 
             {"request": request, "error": f"Error: {str(e)}"}
@@ -155,6 +164,7 @@ async def confirm_checkin(
     name: str = Form(...),
     time: str = Form(...),
     score: float = Form(0.0),
+    image_url: str = Form(""),
     db: Session = Depends(database.get_db)
 ):
     """Confirm the check-in and record it in the database and Google Sheets"""
@@ -163,23 +173,29 @@ async def confirm_checkin(
         check_in_time = datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
         database.record_checkin(db, name, check_in_time, score)
         
-        # Send to Google Sheets
-        google_sheets.add_checkin_record(name, time, score)
+        # Get the server's base URL for the absolute URL
+        base_url = str(request.base_url).rstrip('/')
+        full_image_url = f"{base_url}{image_url}" if image_url else ""
+        
+        # Send to Google Sheets with image URL
+        google_sheets.add_checkin_record(name, time, score, full_image_url)
         
         return templates.TemplateResponse(
             "success.html", 
             {
                 "request": request, 
                 "message": f"Check-in confirmed for {name}!",
-                "details": f"Time: {time}, Score: {score}"
+                "details": f"Time: {time}, Score: {score}",
+                "image_url": image_url  # Pass to the success template for display
             }
         )
     except Exception as e:
+        # Complete the exception handling
+        print(f"Error confirming check-in: {str(e)}")
         return templates.TemplateResponse(
             "error.html", 
             {"request": request, "error": f"Error confirming check-in: {str(e)}"}
         )
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("app.main:app", host="localhost", port=5015, reload=True)

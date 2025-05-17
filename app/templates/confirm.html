@@ -12,7 +12,13 @@
         
         <div class="confirmation-details">
             <div class="photo-container">
-                <img src="data:image/jpeg;base64,{{ data.image }}" alt="Candidate photo">
+                {% if data.image_url %}
+                    <!-- Image is already mirrored, so display directly without CSS transform -->
+                    <img src="{{ data.image_url }}" alt="Candidate photo">
+                {% else %}
+                    <!-- If using data URL, also display directly -->
+                    <img src="{{ data.image }}" alt="Candidate photo">
+                {% endif %}
             </div>
             
             <div class="details">
@@ -24,6 +30,7 @@
         <form action="/confirm" method="post">
             <input type="hidden" name="name" value="{{ data.name }}">
             <input type="hidden" name="time" value="{{ data.time }}">
+            <input type="hidden" name="image_url" value="{{ data.image_url }}">
             
             <div class="form-group">
                 <label for="score">Score (if applicable):</label>

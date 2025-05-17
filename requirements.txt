@@ -13,3 +13,4 @@ gspread
 google-auth
 python-dotenv
 pillow
+tensorflow[and-cuda]

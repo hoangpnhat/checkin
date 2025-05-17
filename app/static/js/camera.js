@@ -7,6 +7,7 @@ let isCameraActive = false;
 let facingMode = "user"; // Default to front camera
 let cameraDevices = [];
 let selectedCameraId = null;
+
 /**
  * Initialize the camera and video stream
  */
@@ -15,6 +16,9 @@ function initCamera(deviceId = null) {
     canvas = document.getElementById('canvas');
     capturedImage = document.getElementById('captured-image');
     
+    // Apply mirror effect to video preview
+    video.style.transform = 'scaleX(-1)';
+
     showCameraLoading();
     
     // Get access to the camera with optimal settings
@@ -22,8 +26,8 @@ function initCamera(deviceId = null) {
         // Configure video constraints
         const constraints = { 
             video: { 
-                width: { ideal: 640 },
-                height: { ideal: 480 }
+                width: { ideal: 840 },
+                height: { ideal: 680 }
             }
         };
         
@@ -43,6 +47,15 @@ function initCamera(deviceId = null) {
             video.play();
             isCameraActive = true;
             hideCameraLoading();
+            
+            // Make sure video is visible and properly mirrored
+            video.style.display = 'block';
+            video.style.transform = facingMode === "user" ? 'scaleX(-1)' : 'none';
+            
+            // Hide captured image if visible
+            if (capturedImage) {
+                capturedImage.style.display = 'none';
+            }
         })
         .catch(function(error) {
             console.error("Error accessing camera: ", error);
@@ -62,6 +75,7 @@ function initCamera(deviceId = null) {
         alert("Sorry, your browser does not support camera access.");
     }
 }
+
 /**
  * Populate camera selection dropdown
  */
@@ -75,11 +89,11 @@ async function populateCameraOptions() {
     }
 
     try {
-        // Lấy quyền camera trước để hiển thị nhãn (label)
+        // Get camera permission first to display labels
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         stream.getTracks().forEach(track => track.stop());
 
-        // Lấy danh sách thiết bị
+        // Get list of devices
         const devices = await navigator.mediaDevices.enumerateDevices();
         cameraDevices = devices.filter(device => device.kind === 'videoinput');
 
@@ -103,11 +117,9 @@ async function populateCameraOptions() {
     }
 }
 
-
 /**
  * Capture image from video stream
- */
-function captureImage() {
+ */function captureImage() {
     if (!video || !canvas) {
         console.error("Video or canvas element not found");
         return;
@@ -119,14 +131,54 @@ function captureImage() {
     canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     
-    // Draw the video frame to the canvas
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    // First clear the canvas
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Always mirror the front-facing camera images
+    if (facingMode === "user") {
+        // Save the current context state
+        context.save();
+        
+        // Set up for mirroring: translate and scale
+        context.translate(canvas.width, 0);
+        context.scale(-1, 1);
+        
+        // Draw the video mirrored
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        
+        // Restore the context state
+        context.restore();
+    } else {
+        // For back camera, draw normally
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    }
     
     // Convert canvas to data URL (base64)
-    imageData = canvas.toDataURL('image/jpeg', 0.8);
+    imageData = canvas.toDataURL('image/jpeg', 0.9);
     
-    // Display captured image
-    capturedImage.src = imageData;
+    // Display captured image 
+    if (capturedImage) {
+        capturedImage.src = imageData;
+        capturedImage.style.display = 'block';
+        capturedImage.style.transform = 'none'; // No additional transform needed
+    }
+    
+    // Hide video element
+    if (video) {
+        video.style.display = 'none';
+    }
+    
+    // Show photo preview container if it exists
+    const photoPreview = document.getElementById('photo-preview');
+    if (photoPreview) {
+        photoPreview.style.display = 'block';
+    }
+    
+    // Hide capture button if it exists
+    const captureBtn = document.getElementById('capture-btn');
+    if (captureBtn) {
+        captureBtn.style.display = 'none';
+    }
     
     // Set image data in the form hidden input
     const imageDataInput = document.getElementById('image-data');
@@ -134,6 +186,8 @@ function captureImage() {
         imageDataInput.value = imageData;
     }
     
+    // Add debug output
+    console.log("Image captured with facingMode:", facingMode);
     return imageData;
 }
 
@@ -217,19 +271,25 @@ function hideCameraLoading() {
  * Take a new photo (reset to camera view)
  */
 function retakePhoto() {
+    // Hide captured image
     if (capturedImage) {
         capturedImage.src = '';
+        capturedImage.style.display = 'none';
     }
     
-    if (video && video.style.display === 'none') {
+    // Show video with proper mirroring
+    if (video) {
         video.style.display = 'block';
+        video.style.transform = facingMode === "user" ? 'scaleX(-1)' : 'none';
     }
     
+    // Hide photo preview if it exists
     const photoPreview = document.getElementById('photo-preview');
     if (photoPreview) {
         photoPreview.style.display = 'none';
     }
     
+    // Show capture button if it exists
     const captureBtn = document.getElementById('capture-btn');
     if (captureBtn) {
         captureBtn.style.display = 'inline-block';
@@ -268,6 +328,7 @@ document.addEventListener('visibilitychange', () => {
         initCamera();
     }
 });
+
 // Initialize camera selection when the page loads
 document.addEventListener('DOMContentLoaded', async () => {
     // Populate dropdown
@@ -284,7 +345,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    // Hiện nút "Đổi camera" nếu có nhiều camera
+    // Show "Switch camera" button if multiple cameras exist
     const hasMultiple = cameraDevices.length > 1;
     const switchBtn = document.getElementById('switch-camera');
 
@@ -292,7 +353,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         switchBtn.style.display = 'inline-block';
         switchBtn.addEventListener('click', switchCamera);
     }
-
-    // ⚠️ Không tự gọi initCamera() ở đây nữa!
-    // Đợi người dùng chọn từ dropdown hoặc gọi thủ công nếu muốn mặc định
 });

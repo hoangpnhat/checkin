@@ -31,6 +31,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY app/ ./app/
 COPY .env ./.env
+COPY credentials.json ./credentials.json
 
 # Create the face_database directory if it doesn't exist
 RUN mkdir -p face_database

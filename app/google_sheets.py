@@ -36,7 +36,7 @@ def init_sheets():
         print(f"Error initializing Google Sheets: {str(e)}")
     return sheet
 
-def add_checkin_record(name: str, time: str, score: float = 0.0):
+def add_checkin_record(name: str, time: str, score: float = 0.0,image_url: str = ""):
     """Add a new check-in record to Google Sheets"""
     global sheet
     
@@ -44,6 +44,6 @@ def add_checkin_record(name: str, time: str, score: float = 0.0):
         raise Exception("Google Sheets connection not initialized")
     
     # Append row to the sheet
-    row = [name, time, str(score)] #STT,ten,diem,thoi_gian,image
+    row = [name, time, str(score), image_url]
     sheet.insert_row(row)
     print(f"Added check-in record for {name} to Google Sheets")
