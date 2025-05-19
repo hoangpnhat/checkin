@@ -758,3 +758,213 @@ INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
 INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
 INFO:     165.225.231.85:0 - "GET /static/css/style.css HTTP/1.1" 200 OK
 INFO:     165.225.231.85:0 - "GET /static/js/camera.js HTTP/1.1" 200 OK
+WARNING:  StatReload detected changes in 'app/main.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4042028]
+2025-05-19 15:43:16.501005: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1747644196.522009  108843 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1747644196.528477  108843 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1747644196.547410  108843 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644196.547442  108843 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644196.547450  108843 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644196.547456  108843 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-19 15:43:16.554486: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+INFO:     Started server process [108843]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/google_sheets.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [108843]
+2025-05-19 15:43:45.261138: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1747644225.281969  109180 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1747644225.288402  109180 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1747644225.305295  109180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644225.305320  109180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644225.305341  109180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644225.305345  109180 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-19 15:43:45.310504: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+INFO:     Started server process [109180]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WARNING:  StatReload detected changes in 'app/google_sheets.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [109180]
+2025-05-19 15:45:10.310186: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1747644310.331303  109591 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1747644310.337824  109591 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1747644310.355023  109591 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644310.355050  109591 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644310.355056  109591 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644310.355059  109591 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-19 15:45:10.360184: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+INFO:     Started server process [109591]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Will watch for changes in these directories: ['/home/dungspringai/hoangpn/checkin']
+INFO:     Uvicorn running on http://0.0.0.0:5016 (Press CTRL+C to quit)
+INFO:     Started reloader process [111301] using StatReload
+2025-05-19 15:50:35.170544: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1747644635.191793  111303 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1747644635.198348  111303 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1747644635.215353  111303 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644635.215377  111303 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644635.215410  111303 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747644635.215415  111303 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-19 15:50:35.220545: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+INFO:     Started server process [111303]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initializing Google Sheets...
+<Worksheet 'Sheet1' id:0>
+Google Sheets connection established
+Loaded 1 face encodings
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/js/camera.js HTTP/1.1" 304 Not Modified
+INFO:     165.225.231.85:0 - "GET /static/css/style.css HTTP/1.1" 304 Not Modified
+INFO:     165.225.231.85:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-05-19 15:55:52.210582: E external/local_xla/xla/stream_executor/cuda/cuda_platform.cc:51] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2025-05-19 15:55:52.210649: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:167] env: CUDA_VISIBLE_DEVICES="-1"
+2025-05-19 15:55:52.210665: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:170] CUDA_VISIBLE_DEVICES is set to -1 - this hides all GPUs from CUDA
+2025-05-19 15:55:52.210677: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:178] verbose logging is disabled. Rerun with verbose logging (usually --v=1 or --vmodule=cuda_diagnostics=1) to get more diagnostic output from this module
+2025-05-19 15:55:52.210687: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:183] retrieving CUDA diagnostic information for host: springaiPC
+2025-05-19 15:55:52.210696: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:190] hostname: springaiPC
+2025-05-19 15:55:52.210801: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:197] libcuda reported version is: 545.29.6
+2025-05-19 15:55:52.210848: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:201] kernel reported version is: 545.29.6
+2025-05-19 15:55:52.210860: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:291] kernel version seems to match DSO: 545.29.6
+Saved image to app/static/uploads/Phạm_Nhật_Hoàng_20250519_155556_83c5797c.jpg
+INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/uploads/Ph%E1%BA%A1m_Nh%E1%BA%ADt_Ho%C3%A0ng_20250519_155556_83c5797c.jpg HTTP/1.1" 200 OK
+Added check-in record for Phạm Nhật Hoàng to Google Sheets
+Google Sheet data sorted by score (descending) and completion time (ascending)
+INFO:     165.225.231.85:0 - "POST /confirm HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [111303]
+INFO:     Stopping reloader process [111301]
+INFO:     Will watch for changes in these directories: ['/home/dungspringai/hoangpn/checkin']
+INFO:     Uvicorn running on http://0.0.0.0:5016 (Press CTRL+C to quit)
+INFO:     Started reloader process [113726] using StatReload
+2025-05-19 15:57:15.966200: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1747645035.987144  113728 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1747645035.993846  113728 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1747645036.010574  113728 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747645036.010599  113728 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747645036.010604  113728 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747645036.010608  113728 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-19 15:57:16.015686: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+INFO:     Started server process [113728]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+2025-05-19 15:57:22.450246: E external/local_xla/xla/stream_executor/cuda/cuda_platform.cc:51] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2025-05-19 15:57:22.450338: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:167] env: CUDA_VISIBLE_DEVICES="-1"
+2025-05-19 15:57:22.450352: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:170] CUDA_VISIBLE_DEVICES is set to -1 - this hides all GPUs from CUDA
+2025-05-19 15:57:22.450362: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:178] verbose logging is disabled. Rerun with verbose logging (usually --v=1 or --vmodule=cuda_diagnostics=1) to get more diagnostic output from this module
+2025-05-19 15:57:22.450369: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:183] retrieving CUDA diagnostic information for host: springaiPC
+2025-05-19 15:57:22.450376: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:190] hostname: springaiPC
+2025-05-19 15:57:22.450472: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:197] libcuda reported version is: 545.29.6
+2025-05-19 15:57:22.450524: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:201] kernel reported version is: 545.29.6
+2025-05-19 15:57:22.450536: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:291] kernel version seems to match DSO: 545.29.6
+Initializing Google Sheets...
+<Worksheet 'Sheet1' id:0>
+Google Sheets connection established
+No face encodings found
+INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
+Saved encoding for Phạm Nhật Hoàng
+Saved image to app/static/uploads/Phạm_Nhật_Hoàng_20250519_155737_ac407d91.jpg
+INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/uploads/Ph%E1%BA%A1m_Nh%E1%BA%ADt_Ho%C3%A0ng_20250519_155737_ac407d91.jpg HTTP/1.1" 200 OK
+Added check-in record for Phạm Nhật Hoàng to Google Sheets
+Google Sheet data sorted by score (descending) and completion time (ascending)
+INFO:     165.225.231.85:0 - "POST /confirm HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [113728]
+INFO:     Stopping reloader process [113726]
+INFO:     Will watch for changes in these directories: ['/home/dungspringai/hoangpn/checkin']
+INFO:     Uvicorn running on http://0.0.0.0:5016 (Press CTRL+C to quit)
+INFO:     Started reloader process [117311] using StatReload
+2025-05-19 16:09:14.593132: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1747645754.615113  117313 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1747645754.621635  117313 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1747645754.638033  117313 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747645754.638056  117313 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747645754.638061  117313 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747645754.638064  117313 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-19 16:09:14.642910: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+INFO:     Started server process [117313]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initializing Google Sheets...
+<Worksheet 'Sheet1' id:0>
+Google Sheets connection established
+No face encodings found
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+2025-05-19 16:09:38.410524: E external/local_xla/xla/stream_executor/cuda/cuda_platform.cc:51] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2025-05-19 16:09:38.410587: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:167] env: CUDA_VISIBLE_DEVICES="-1"
+2025-05-19 16:09:38.410603: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:170] CUDA_VISIBLE_DEVICES is set to -1 - this hides all GPUs from CUDA
+2025-05-19 16:09:38.410614: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:178] verbose logging is disabled. Rerun with verbose logging (usually --v=1 or --vmodule=cuda_diagnostics=1) to get more diagnostic output from this module
+2025-05-19 16:09:38.410624: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:183] retrieving CUDA diagnostic information for host: springaiPC
+2025-05-19 16:09:38.410632: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:190] hostname: springaiPC
+2025-05-19 16:09:38.410733: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:197] libcuda reported version is: 545.29.6
+2025-05-19 16:09:38.410772: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:201] kernel reported version is: 545.29.6
+2025-05-19 16:09:38.410782: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:291] kernel version seems to match DSO: 545.29.6
+INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
+Saved encoding for Trương Trường Thành
+Saved image to app/static/uploads/Trương_Trường_Thành_20250519_161000_56266648.jpg
+INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/uploads/Tr%C6%B0%C6%A1ng_Tr%C6%B0%E1%BB%9Dng_Th%C3%A0nh_20250519_161000_56266648.jpg HTTP/1.1" 200 OK
+Added check-in record for Trương Trường Thành to Google Sheets
+Google Sheet data sorted by score (descending) and completion time (ascending)
+INFO:     165.225.231.85:0 - "POST /confirm HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
+Saved encoding for Phạm Nhật Hoàng
+Saved image to app/static/uploads/Phạm_Nhật_Hoàng_20250519_161116_520e1e74.jpg
+INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/uploads/Ph%E1%BA%A1m_Nh%E1%BA%ADt_Ho%C3%A0ng_20250519_161116_520e1e74.jpg HTTP/1.1" 200 OK
+Added check-in record for Phạm Nhật Hoàng to Google Sheets
+Google Sheet data sorted by score (descending) and completion time (ascending)
+INFO:     165.225.231.85:0 - "POST /confirm HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "GET / HTTP/1.1" 200 OK
+INFO:     116.98.3.103:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [117313]
+INFO:     Stopping reloader process [117311]

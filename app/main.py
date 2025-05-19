@@ -186,6 +186,8 @@ async def confirm_checkin(
     score: float = Form(0.0),
     image_url: str = Form(""),
     completion_time: int = Form(0),  # New parameter for the timer
+    school_name: str = Form(""),     # New parameter for school name
+    phone_number: str = Form(""),    # New parameter for phone number
     db: Session = Depends(database.get_db)
 ):
     """Confirm the check-in and record it in the database and Google Sheets"""
@@ -203,15 +205,15 @@ async def confirm_checkin(
         base_url = "https://checkin.tainangphuyen.com"
         full_image_url = f"{base_url}{image_url}" if image_url else ""
         
-        # Send to Google Sheets with image URL and completion time
-        google_sheets.add_checkin_record(name, time, score, full_image_url, formatted_completion_time)
+        # Send to Google Sheets with image URL, completion time, school name and phone number
+        google_sheets.add_checkin_record(name, time, score, full_image_url, formatted_completion_time, school_name, phone_number)
         
         return templates.TemplateResponse(
             "success.html", 
             {
                 "request": request, 
                 "message": f"Check-in confirmed for {name}!",
-                "details": f"Time: {time}, Score: {score}, Completion time: {formatted_completion_time}",
+                "details": f"Time: {time}, Score: {score}, Completion time: {formatted_completion_time}, School: {school_name}",
                 "image_url": image_url
             }
         )
