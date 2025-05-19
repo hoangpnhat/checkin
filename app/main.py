@@ -94,6 +94,7 @@ async def checkin_page(request: Request):
 async def checkin(
     request: Request,
     image_data: str = Form(...),
+    name: str = Form(None),  # Make name optional, needed for registration
     db: Session = Depends(database.get_db)
 ):
     try:
@@ -110,40 +111,59 @@ async def checkin(
                 {"request": request, "error": "No face detected. Please try again."}
             )
             
-        # Recognize face
+        # Encode the face
         face_encoding = face_utils.encode_face(image, face_locations[0])
-        name = face_utils.recognize_face(face_encoding)
         
-        if not name:
-            # Instead of showing error, redirect to registration with the image data
-            encoded_image = base64.b64encode(image_bytes).decode('utf-8')
-            return templates.TemplateResponse(
-                "register.html", 
-                {
-                    "request": request, 
-                    "info": "Face not recognized. Please register first.",
-                    "prefilled_image": f"data:image/jpeg;base64,{encoded_image}"
-                }
-            )
+        # If name is provided, this is a registration submission
+        if name:
+            # Check if face already exists
+            if face_utils.is_face_registered(face_encoding):
+                return templates.TemplateResponse(
+                    "checkin.html", 
+                    {"request": request, "error": "This person is already registered."}
+                )
+                
+            # Register the new face
+            face_utils.save_face_encoding(name, face_encoding)
+            database.create_user(db, name, datetime.now())
             
+            # Continue with check-in process for the newly registered user
+            recognized_name = name
+        else:
+            # Try to recognize the face
+            recognized_name = face_utils.recognize_face(face_encoding)
+            
+            if not recognized_name:
+                # Face not recognized, show registration form
+                return templates.TemplateResponse(
+                    "checkin.html", 
+                    {
+                        "request": request,
+                        "show_registration": True,
+                        "captured_image": image_data,
+                        "info": "Face not recognized. Please enter your name to register."
+                    }
+                )
+        
         # Check if already checked in today
         today = datetime.now().date()
-        if database.has_checked_in_today(db, name, today):
+        if database.has_checked_in_today(db, recognized_name, today):
             return templates.TemplateResponse(
                 "checkin.html", 
-                {"request": request, "error": f"{name} has already checked in today."}
+                {"request": request, "error": f"{recognized_name} has already checked in today."}
             )
             
         # Save the image and get the URL
-        image_url = save_image.save_image_from_data_url(image_data_clean, name)
+        image_url = save_image.save_image_from_data_url(image_data_clean, recognized_name)
             
         # Record check-in time and prepare data for confirmation
         check_in_time = datetime.now()
         check_in_data = {
-            "name": name,
+            "name": recognized_name,
             "time": check_in_time.strftime("%Y-%m-%d %H:%M:%S"),
-            "image": image_data,  # Keep the original data URL for display
-            "image_url": image_url  # The saved URL path
+            "image": image_data,
+            "image_url": image_url,
+            "show_timer": True  # Flag to show the timer
         }
         
         return templates.TemplateResponse(
@@ -165,6 +185,7 @@ async def confirm_checkin(
     time: str = Form(...),
     score: float = Form(0.0),
     image_url: str = Form(""),
+    completion_time: int = Form(0),  # New parameter for the timer
     db: Session = Depends(database.get_db)
 ):
     """Confirm the check-in and record it in the database and Google Sheets"""
@@ -173,24 +194,28 @@ async def confirm_checkin(
         check_in_time = datetime.strptime(time, "%Y-%m-%d %H:%M:%S")
         database.record_checkin(db, name, check_in_time, score)
         
+        # Format the completion time (seconds to MM:SS)
+        minutes = completion_time // 60
+        seconds = completion_time % 60
+        formatted_completion_time = f"{minutes:02d}:{seconds:02d}"
+        
         # Get the server's base URL for the absolute URL
-        base_url = str(request.base_url).rstrip('/')
+        base_url = "https://checkin.tainangphuyen.com"
         full_image_url = f"{base_url}{image_url}" if image_url else ""
         
-        # Send to Google Sheets with image URL
-        google_sheets.add_checkin_record(name, time, score, full_image_url)
+        # Send to Google Sheets with image URL and completion time
+        google_sheets.add_checkin_record(name, time, score, full_image_url, formatted_completion_time)
         
         return templates.TemplateResponse(
             "success.html", 
             {
                 "request": request, 
                 "message": f"Check-in confirmed for {name}!",
-                "details": f"Time: {time}, Score: {score}",
-                "image_url": image_url  # Pass to the success template for display
+                "details": f"Time: {time}, Score: {score}, Completion time: {formatted_completion_time}",
+                "image_url": image_url
             }
         )
     except Exception as e:
-        # Complete the exception handling
         print(f"Error confirming check-in: {str(e)}")
         return templates.TemplateResponse(
             "error.html", 

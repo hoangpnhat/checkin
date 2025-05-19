@@ -26,7 +26,109 @@
                 <p>Check-in time: {{ data.time }}</p>
             </div>
         </div>
-        
+       {% if data.show_timer %}
+        <div class="timer-container">
+            <div id="timer-display">02:00</div>
+            <div class="timer-controls">
+                <button id="start-timer" class="btn btn-success">Start Timer</button>
+                <button id="stop-timer" class="btn btn-primary" disabled>Stop Timer</button>
+            </div>
+            <input type="hidden" id="elapsed-time" name="elapsed_time" value="0">
+        </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set the duration in seconds (2 minutes = 120 seconds)
+                let duration = 120;
+                let timerInterval;
+                let startTime;
+                let elapsedTime = 0;
+                let timerRunning = false;
+                
+                // Get button elements
+                const startButton = document.getElementById('start-timer');
+                const stopButton = document.getElementById('stop-timer');
+                
+                // Add event listener to the start button
+                startButton.addEventListener('click', function() {
+                    if (!timerRunning) {
+                        startTimer();
+                        this.disabled = true;  // Disable start button
+                        stopButton.disabled = false;  // Enable stop button
+                        timerRunning = true;
+                    }
+                });
+                
+                function startTimer() {
+                    startTime = Date.now();
+                    timerInterval = setInterval(updateTimer, 1000);
+                }
+                
+                function updateTimer() {
+                    // Calculate the elapsed time in seconds
+                    const currentTime = Date.now();
+                    elapsedTime = Math.floor((currentTime - startTime) / 1000);
+                    const remainingTime = Math.max(0, duration - elapsedTime);
+                    
+                    // Format and display the remaining time
+                    const minutes = Math.floor(remainingTime / 60);
+                    const seconds = remainingTime % 60;
+                    document.getElementById('timer-display').textContent = 
+                        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    // Update the hidden input with the actual elapsed time
+                    document.getElementById('elapsed-time').value = elapsedTime;
+                    
+                    // Stop the timer if time is up
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+                        document.getElementById('timer-display').textContent = "Time's up!";
+                        startButton.disabled = true;  // Keep start button disabled
+                        stopButton.disabled = true;   // Disable stop button
+                        timerRunning = false;
+                        
+                        // Add the elapsed time to the form submission
+                        addCompletionTimeToForm();
+                    }
+                }
+                
+                // Add event listener to the stop button
+                stopButton.addEventListener('click', function() {
+                    if (timerRunning) {
+                        clearInterval(timerInterval);
+                        
+                        // Display the actual elapsed time instead of remaining time
+                        const minutes = Math.floor(elapsedTime / 60);
+                        const seconds = elapsedTime % 60;
+                        document.getElementById('timer-display').textContent = 
+                            `Completed in: ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                        
+                        // Add the elapsed time to the form submission
+                        addCompletionTimeToForm();
+                        
+                        // Disable buttons
+                        startButton.disabled = true;
+                        this.disabled = true;
+                        timerRunning = false;
+                    }
+                });
+                
+                function addCompletionTimeToForm() {
+                    // Check if completion_time input already exists
+                    if (!document.querySelector('input[name="completion_time"]')) {
+                        const timeInput = document.createElement('input');
+                        timeInput.type = 'hidden';
+                        timeInput.name = 'completion_time';
+                        timeInput.value = elapsedTime;
+                        document.querySelector('form').appendChild(timeInput);
+                    } else {
+                        // Update existing input
+                        document.querySelector('input[name="completion_time"]').value = elapsedTime;
+                    }
+                }
+            });
+        </script>
+        {% endif %}
         <form action="/confirm" method="post">
             <input type="hidden" name="name" value="{{ data.name }}">
             <input type="hidden" name="time" value="{{ data.time }}">

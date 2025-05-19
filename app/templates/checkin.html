@@ -31,16 +31,33 @@
             </div>
 
             <div id="photo-preview" style="display: none;">
-            <img id="captured-image" src="" alt="Captured image" />
+                <img id="captured-image" src="" alt="Captured image" />
 
-            <form id="checkin-form" action="/checkin" method="post" class="form-buttons">
-                <input type="hidden" id="image-data" name="image_data" />
-                <div class="buttons">
-                <button type="button" id="retake-btn" class="btn btn-info">Retake</button>
-                <button type="submit" class="btn btn-primary">Check-in</button>
-                </div>
-            </form>
-        </div>
+                <form id="checkin-form" action="/checkin" method="post" class="form-buttons">
+                    <input type="hidden" id="image-data" name="image_data" />
+                    <div class="buttons">
+                    <button type="button" id="retake-btn" class="btn btn-info">Retake</button>
+                    <button type="submit" class="btn btn-primary">Check-in</button>
+                    </div>
+                </form>
+            </div>
+            {% if show_registration %}
+            <div id="registration-form" class="form-group">
+                <h2>New User Registration</h2>
+                <p>{{ info }}</p>
+                
+                <form action="/checkin" method="post">
+                    <input type="hidden" name="image_data" value="{{ captured_image }}">
+                    
+                    <div class="form-group">
+                        <label for="name">Your Full Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Register & Check-in</button>
+                </form>
+            </div>
+            {% endif %}
   </div>
 
   <div class="navigation">

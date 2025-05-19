@@ -676,3 +676,85 @@ Initializing Google Sheets...
 Google Sheets connection established
 Loaded 4 face encodings
 INFO:     Stopping reloader process [3522406]
+INFO:     Will watch for changes in these directories: ['/home/dungspringai/hoangpn/checkin']
+INFO:     Uvicorn running on http://0.0.0.0:5016 (Press CTRL+C to quit)
+INFO:     Started reloader process [4036536] using StatReload
+2025-05-18 21:10:44.533269: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1747577444.554272 4036538 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1747577444.560692 4036538 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1747577444.577222 4036538 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747577444.577249 4036538 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747577444.577254 4036538 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747577444.577258 4036538 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-18 21:10:44.582077: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+INFO:     Started server process [4036538]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initializing Google Sheets...
+<Worksheet 'Sheet1' id:0>
+Google Sheets connection established
+Loaded 1 face encodings
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/css/style.css HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/js/camera.js HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2025-05-18 21:23:13.461765: E external/local_xla/xla/stream_executor/cuda/cuda_platform.cc:51] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2025-05-18 21:23:13.461843: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:167] env: CUDA_VISIBLE_DEVICES="-1"
+2025-05-18 21:23:13.461860: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:170] CUDA_VISIBLE_DEVICES is set to -1 - this hides all GPUs from CUDA
+2025-05-18 21:23:13.461873: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:178] verbose logging is disabled. Rerun with verbose logging (usually --v=1 or --vmodule=cuda_diagnostics=1) to get more diagnostic output from this module
+2025-05-18 21:23:13.461883: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:183] retrieving CUDA diagnostic information for host: springaiPC
+2025-05-18 21:23:13.461895: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:190] hostname: springaiPC
+2025-05-18 21:23:13.462007: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:197] libcuda reported version is: 545.29.6
+2025-05-18 21:23:13.462057: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:201] kernel reported version is: 545.29.6
+2025-05-18 21:23:13.462083: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:291] kernel version seems to match DSO: 545.29.6
+Saved image to app/static/uploads/Phạm_Nhật_Hoàng_20250518_212319_bee460b0.jpg
+INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/uploads/Ph%E1%BA%A1m_Nh%E1%BA%ADt_Ho%C3%A0ng_20250518_212319_bee460b0.jpg HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4036538]
+INFO:     Stopping reloader process [4036536]
+INFO:     Will watch for changes in these directories: ['/home/dungspringai/hoangpn/checkin']
+INFO:     Uvicorn running on http://0.0.0.0:5016 (Press CTRL+C to quit)
+INFO:     Started reloader process [4042026] using StatReload
+2025-05-18 21:29:02.783140: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1747578542.804209 4042028 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1747578542.810668 4042028 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1747578542.827056 4042028 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747578542.827081 4042028 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747578542.827086 4042028 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1747578542.827089 4042028 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2025-05-18 21:29:02.831884: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+INFO:     Started server process [4042028]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+Initializing Google Sheets...
+<Worksheet 'Sheet1' id:0>
+Google Sheets connection established
+Loaded 1 face encodings
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+2025-05-18 21:36:13.098831: E external/local_xla/xla/stream_executor/cuda/cuda_platform.cc:51] failed call to cuInit: INTERNAL: CUDA error: Failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2025-05-18 21:36:13.098924: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:167] env: CUDA_VISIBLE_DEVICES="-1"
+2025-05-18 21:36:13.098946: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:170] CUDA_VISIBLE_DEVICES is set to -1 - this hides all GPUs from CUDA
+2025-05-18 21:36:13.098966: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:178] verbose logging is disabled. Rerun with verbose logging (usually --v=1 or --vmodule=cuda_diagnostics=1) to get more diagnostic output from this module
+2025-05-18 21:36:13.098982: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:183] retrieving CUDA diagnostic information for host: springaiPC
+2025-05-18 21:36:13.098996: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:190] hostname: springaiPC
+2025-05-18 21:36:13.099130: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:197] libcuda reported version is: 545.29.6
+2025-05-18 21:36:13.099176: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:201] kernel reported version is: 545.29.6
+2025-05-18 21:36:13.099217: I external/local_xla/xla/stream_executor/cuda/cuda_diagnostics.cc:291] kernel version seems to match DSO: 545.29.6
+Saved image to app/static/uploads/Phạm_Nhật_Hoàng_20250518_213618_6df276dd.jpg
+INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/uploads/Ph%E1%BA%A1m_Nh%E1%BA%ADt_Ho%C3%A0ng_20250518_213618_6df276dd.jpg HTTP/1.1" 200 OK
+Added check-in record for Phạm Nhật Hoàng to Google Sheets
+Google Sheet data sorted by score (descending) and completion time (ascending)
+INFO:     165.225.231.85:0 - "POST /confirm HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "POST /checkin HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET / HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/css/style.css HTTP/1.1" 200 OK
+INFO:     165.225.231.85:0 - "GET /static/js/camera.js HTTP/1.1" 200 OK

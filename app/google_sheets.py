@@ -36,7 +36,7 @@ def init_sheets():
         print(f"Error initializing Google Sheets: {str(e)}")
     return sheet
 
-def add_checkin_record(name: str, time: str, score: float = 0.0,image_url: str = ""):
+def add_checkin_record(name: str, time: str, score: float = 0.0, image_url: str = "", completion_time: str = ""):
     """Add a new check-in record to Google Sheets"""
     global sheet
     
@@ -44,6 +44,31 @@ def add_checkin_record(name: str, time: str, score: float = 0.0,image_url: str =
         raise Exception("Google Sheets connection not initialized")
     
     # Append row to the sheet
-    row = [name, time, str(score), image_url]
-    sheet.insert_row(row)
+    row = [name, time, str(score), image_url, completion_time]
+    sheet.append_row(row)
     print(f"Added check-in record for {name} to Google Sheets")
+    
+    # Get all data (including headers)
+    all_data = sheet.get_all_values()
+    
+    # Separate headers and data
+    headers = all_data[0]
+    data = all_data[1:]
+    
+    # Find the indices for score and completion_time columns
+    score_idx = headers.index("Score") if "Score" in headers else 2  # Default to column C (index 2)
+    time_idx = headers.index("Completion Time") if "Completion Time" in headers else 4  # Default to column E (index 4)
+    
+    # Sort the data rows: first by score (descending), then by completion time (ascending)
+    sorted_data = sorted(
+        data, 
+        key=lambda x: (
+            -float(x[score_idx] or 0),  # Convert score to float, use 0 if empty
+            x[time_idx] or "99:99"      # Sort by completion time (ascending), use a large value if empty
+        )
+    )
+    
+    # Update the sheet with the sorted data (keep the headers)
+    sheet.update([headers] + sorted_data)
+    
+    print("Google Sheet data sorted by score (descending) and completion time (ascending)")
