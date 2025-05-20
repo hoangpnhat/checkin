@@ -32,7 +32,7 @@
                         <option value="">Loading cameras...</option>
                     </select>
                 </div>
-            <video id="video" width="640" height="480" autoplay></video>
+            <video id="video" width="640" height="480" autoplay style="display: inline-block;"></video>
             <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
             <div class="camera-buttons">
                 <button id="capture-btn" class="btn">Capture Photo</button>
@@ -77,13 +77,13 @@
                     captureImage();
                     document.getElementById('video').style.display = 'none';
                     document.getElementById('capture-btn').style.display = 'none';
-                    document.getElementById('photo-preview').style.display = 'block';
-                    document.getElementById('register-form').style.display = 'block';
+                    document.getElementById('photo-preview').style.display = 'inline-block';
+                    document.getElementById('register-form').style.display = 'inline-block';
                 });
                 
                 // Retake button
                 document.getElementById('retake-btn').addEventListener('click', function() {
-                    document.getElementById('video').style.display = 'block';
+                    document.getElementById('video').style.display = 'inline-block';
                     document.getElementById('capture-btn').style.display = 'inline-block';
                     document.getElementById('photo-preview').style.display = 'none';
                     document.getElementById('register-form').style.display = 'none';
