@@ -17,22 +17,25 @@
 
         <div class="camera-container">
             <div class="camera-selection">
+            {% if not show_registration %}
             <label for="camera-select">Camera: </label>
             <select id="camera-select" class="camera-dropdown">
                 <option value="">Loading cameras...</option>
             </select>
             </div>
 
-            <video id="video" width="640" height="480" autoplay></video>
+            <video id="video" width="640" height="480" autoplay style="display: inline-block;"></video>
             <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
 
             <div class="camera-buttons">
             <button id="capture-btn" class="btn">Capture Photo</button>
             </div>
+            {% endif %}
+
 
             <div id="photo-preview" style="display: none;">
                 <img id="captured-image" src="" alt="Captured image" />
-
+                {% if not show_registration %}
                 <form id="checkin-form" action="/checkin" method="post" class="form-buttons">
                     <input type="hidden" id="image-data" name="image_data" />
                     <div class="buttons">
@@ -40,10 +43,11 @@
                     <button type="submit" class="btn btn-primary">Check-in</button>
                     </div>
                 </form>
+                {% endif %}
             </div>
             {% if show_registration %}
             <div id="registration-form" class="form-group">
-                <h2>New User Registration</h2>
+                <h2 style="text-align: center;">New User Registration</h2>
                 <p>{{ info }}</p>
                 
                 <form action="/checkin" method="post">
@@ -54,7 +58,9 @@
                         <input type="text" id="name" name="name" required>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Register & Check-in</button>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <button type="submit" class="btn btn-primary">Register & Check-in</button>
+                    </div>
                 </form>
             </div>
             {% endif %}
@@ -76,8 +82,8 @@
                 captureImage();
                 document.getElementById('video').style.display = 'none';
                 document.getElementById('capture-btn').style.display = 'none';
-                document.getElementById('photo-preview').style.display = 'block';
-                document.getElementById('checkin-form').style.display = 'block';
+                document.getElementById('photo-preview').style.display = 'inline-block';
+                document.getElementById('checkin-form').style.display = 'inline-block';
             });
             
             // Retake button

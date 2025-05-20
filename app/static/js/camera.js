@@ -49,7 +49,7 @@ function initCamera(deviceId = null) {
             hideCameraLoading();
             
             // Make sure video is visible and properly mirrored
-            video.style.display = 'block';
+            video.style.display = 'inline-block';
             video.style.transform = facingMode === "user" ? 'scaleX(-1)' : 'none';
             
             // Hide captured image if visible
@@ -159,7 +159,7 @@ async function populateCameraOptions() {
     // Display captured image 
     if (capturedImage) {
         capturedImage.src = imageData;
-        capturedImage.style.display = 'block';
+        capturedImage.style.display = 'inline-block';
         capturedImage.style.transform = 'none'; // No additional transform needed
     }
     
@@ -171,7 +171,7 @@ async function populateCameraOptions() {
     // Show photo preview container if it exists
     const photoPreview = document.getElementById('photo-preview');
     if (photoPreview) {
-        photoPreview.style.display = 'block';
+        photoPreview.style.display = 'inline-block';
     }
     
     // Hide capture button if it exists
@@ -279,7 +279,7 @@ function retakePhoto() {
     
     // Show video with proper mirroring
     if (video) {
-        video.style.display = 'block';
+        video.style.display = 'inline-block';
         video.style.transform = facingMode === "user" ? 'scaleX(-1)' : 'none';
     }
     
